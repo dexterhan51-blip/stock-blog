@@ -10,20 +10,25 @@ export function CategoryNav({
   activeSlug?: string
 }) {
   return (
-    <nav className="flex gap-1.5 overflow-x-auto py-4 mb-8 scrollbar-hide">
-      <CategoryPill href="/" active={!activeSlug}>
-        All
-      </CategoryPill>
-      {categories.map((category) => (
-        <CategoryPill
-          key={category.id}
-          href={`/category/${category.slug}`}
-          active={activeSlug === category.slug}
-        >
-          {category.name}
+    <section className="mb-10">
+      <h2 className="text-xl font-extrabold tracking-tight mb-4">
+        주제별
+      </h2>
+      <div className="flex flex-wrap gap-2">
+        <CategoryPill href="/" active={!activeSlug}>
+          전체
         </CategoryPill>
-      ))}
-    </nav>
+        {categories.map((category) => (
+          <CategoryPill
+            key={category.id}
+            href={`/category/${category.slug}`}
+            active={activeSlug === category.slug}
+          >
+            {category.name}
+          </CategoryPill>
+        ))}
+      </div>
+    </section>
   )
 }
 
@@ -40,7 +45,7 @@ function CategoryPill({
     <Link
       href={href}
       className={cn(
-        "whitespace-nowrap px-4 py-1.5 text-xs font-bold rounded-full transition-colors tracking-wide uppercase",
+        "whitespace-nowrap px-4 py-2 text-sm font-semibold rounded-full transition-colors",
         active
           ? "bg-foreground text-background"
           : "bg-muted text-muted-foreground hover:bg-foreground/10 hover:text-foreground"
